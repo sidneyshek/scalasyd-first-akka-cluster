@@ -64,12 +64,12 @@ Actors are **objects** that do something in response to messages
 
 ### Broker-Worker protocol
 
-<img src="scalasyd-first-akka-cluster/images/brokerworker.png"/>
+<img src="/scalasyd-first-akka-cluster/images/brokerworker.png"/>
 
 
 ### Client-Broker protocol
 
-<img src="scalasyd-first-akka-cluster/images/clientbroker.png"/>
+<img src="/scalasyd-first-akka-cluster/images/clientbroker.png"/>
 
 
 
@@ -155,17 +155,17 @@ Actors are **objects** that do something in response to messages
 
 ## Akka vs RabbitMQ vs ZeroMQ
 
-<img src="scalasyd-first-akka-cluster/images/overall.png"/>
+<img src="/scalasyd-first-akka-cluster/images/overall.png"/>
 
 
 ## Akka vs RabbitMQ vs ZeroMQ
 
-<img src="scalasyd-first-akka-cluster/images/rabbitmq.png"/>
+<img src="/scalasyd-first-akka-cluster/images/rabbitmq.png"/>
 
 
 ## Akka vs RabbitMQ vs ZeroMQ
 
-<img src="scalasyd-first-akka-cluster/images/zeromq.png"/>
+<img src="/scalasyd-first-akka-cluster/images/zeromq.png"/>
 
 
 
