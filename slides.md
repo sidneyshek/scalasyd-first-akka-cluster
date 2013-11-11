@@ -57,19 +57,19 @@ Actors are **objects** that do something in response to messages
 
 ## What we're building
 
-   <img src="images/overall.png"/>
+   <img src="scalasyd-first-akka-cluster/images/overall.png"/>
 
    * Like ZeroMQ [Paranoid Pirate](http://zguide.zeromq.org/php:chapter4#Robust-Reliable-Queuing-Paranoid-Pirate-Pattern) pattern
 
 
 ### Broker-Worker protocol
 
-<img src="images/brokerworker.png"/>
+<img src="scalasyd-first-akka-cluster/images/brokerworker.png"/>
 
 
 ### Client-Broker protocol
 
-<img src="images/clientbroker.png"/>
+<img src="scalasyd-first-akka-cluster/images/clientbroker.png"/>
 
 
 
@@ -155,17 +155,17 @@ Actors are **objects** that do something in response to messages
 
 ## Akka vs RabbitMQ vs ZeroMQ
 
-<img src="images/overall.png"/>
+<img src="scalasyd-first-akka-cluster/images/overall.png"/>
 
 
 ## Akka vs RabbitMQ vs ZeroMQ
 
-<img src="images/rabbitmq.png"/>
+<img src="scalasyd-first-akka-cluster/images/rabbitmq.png"/>
 
 
 ## Akka vs RabbitMQ vs ZeroMQ
 
-<img src="images/zeromq.png"/>
+<img src="scalasyd-first-akka-cluster/images/zeromq.png"/>
 
 
 
