@@ -57,7 +57,7 @@ Actors are **objects** that do something in response to messages
 
 ## What we're building
 
-   <img src="scalasyd-first-akka-cluster/images/overall.png"/>
+   <img src="/scalasyd-first-akka-cluster/images/overall.png"/>
 
    * Like ZeroMQ [Paranoid Pirate](http://zguide.zeromq.org/php:chapter4#Robust-Reliable-Queuing-Paranoid-Pirate-Pattern) pattern
 
