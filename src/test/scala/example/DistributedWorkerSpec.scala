@@ -64,7 +64,7 @@ class DistributedWorkerSpec extends Specification with NoTimeConversions {
         system.actorSelection(RootActorPath(clusterAddress) / "user" / "receptionist"))
       val clusterClient = system.actorOf(ClusterClient.props(initialContacts), "clusterClient")
 
-      val frontend = system.actorOf(Props[Frontend], "frontend")
+      val frontend = system.actorOf(Frontend.props(clusterClient), "frontend")
 
       val results = TestProbe()
       DistributedPubSubExtension(system).mediator ! Subscribe(masterConfig.resultTopic, results.ref)
@@ -108,7 +108,7 @@ class DistributedWorkerSpec extends Specification with NoTimeConversions {
         system.actorSelection(RootActorPath(clusterAddress) / "user" / "receptionist"))
       val clusterClient = system.actorOf(ClusterClient.props(initialContacts), "clusterClient")
 
-      val frontend = system.actorOf(Props[Frontend], "frontend")
+      val frontend = system.actorOf(Frontend.props(clusterClient), "frontend")
 
       val results = TestProbe()
       DistributedPubSubExtension(system).mediator ! Subscribe(masterConfig.resultTopic, results.ref)

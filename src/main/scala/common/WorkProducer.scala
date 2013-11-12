@@ -30,9 +30,10 @@ class WorkProducer(frontend: ActorRef) extends Actor with ActorLogging {
   def waitAccepted(work: Work): Actor.Receive = {
     case Frontend.Ok =>
       context.unbecome()
-    case Frontend.NotOk =>
+    case Frontend.NotOk(_, _) =>
       log.info("Work not accepted, retry after a while")
       scheduler.scheduleOnce(3.seconds, frontend, work)
+    case e => log.warning("Unexpected message {}", e)
   }
 
 }
