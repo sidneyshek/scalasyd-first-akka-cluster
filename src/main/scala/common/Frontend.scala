@@ -9,11 +9,12 @@ import akka.util.Timeout
 
 object Frontend {
   case object Ok
-  case object NotOk
+  case class NotOk(t: Throwable, work: Any)
 }
 
 /**
- * Frontend is responsible for attempting to send work requests to the cluster master.
+ * Frontend is responsible for attempting to send work requests to the broker. It responds with
+ * either Ok or NotOk
  */
 class Frontend extends Actor {
   import Frontend._
@@ -25,8 +26,7 @@ class Frontend extends Actor {
       implicit val timeout = Timeout(5.seconds)
       (mediator ? Send("/user/broker/active", work, localAffinity = false)) map {
         case Broker.Ack(_) => Ok
-      } recover { case _ => NotOk } pipeTo sender
-
+      } recover { case t => NotOk(t, work) } pipeTo sender
   }
 
 }

@@ -3,7 +3,7 @@ package common
 import java.util.UUID
 import scala.concurrent.forkjoin.ThreadLocalRandom
 import scala.concurrent.duration._
-import akka.actor.{Props, Actor, ActorLogging, ActorRef}
+import akka.actor._
 
 object WorkProducer {
   def props(frontend: ActorRef): Props = Props(classOf[WorkProducer], frontend)
