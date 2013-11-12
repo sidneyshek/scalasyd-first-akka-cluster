@@ -102,7 +102,6 @@ Actors are **objects** that do something in response to messages
 ### Extension - Fix client overload
 
 
-
 ### What's next
 
    * Orderly shutdown with Reaper pattern
