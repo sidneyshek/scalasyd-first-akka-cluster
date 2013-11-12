@@ -5,7 +5,7 @@ import akka.contrib.pattern.ClusterClient
 import scalaz._, syntax.std.boolean._, syntax.id._
 import common.Worker
 
-class WorkerMain extends Startup {
+object WorkerMain extends Startup {
 
   def main(args: Array[String]): Unit = {
     startWorker(1)

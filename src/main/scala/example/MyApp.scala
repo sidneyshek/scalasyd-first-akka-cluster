@@ -1,6 +1,6 @@
 package example
 
-class MyApp {
+object MyApp {
   def main(args: Array[String]): Unit = {
     var n = 0
     val sleepInterval = 5000
