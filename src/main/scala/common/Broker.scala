@@ -69,7 +69,6 @@ class Broker(config: BrokerConfig) extends Actor with ActorLogging {
       if (workers.contains(workerId)) {
         workers += (workerId -> workers(workerId).copy(ref = sender))
       } else {
-        println(s"Worker registered ${workerId}")
         log.debug("Worker registered: {}", workerId)
         workers += (workerId -> WorkerState(sender, status = Idle))
         if (pendingWork.nonEmpty)
@@ -135,7 +134,6 @@ class Broker(config: BrokerConfig) extends Actor with ActorLogging {
       if (workIds.contains(work.workId)) {
         sender ! Broker.Ack(work.workId)
       } else {
-        println(s"Accepted work ${work.workId}")
         log.debug("Accepted work: {}", work)
         // TODO store in Eventsourced
         pendingWork = pendingWork enqueue work
@@ -175,13 +173,7 @@ class Broker(config: BrokerConfig) extends Actor with ActorLogging {
     if (pendingWork.nonEmpty) {
       // could pick a few random instead of all
       workers.foreach {
-        case (id, WorkerState(ref, Idle)) =>
-          implicit val timeout = akka.util.Timeout(5, TimeUnit.SECONDS)
-          (ref ? WorkIsReady) recover { case t => {
-              log.warning("Registered example unavailable {}", id)
-              self ! DeregisterWorker(id)
-            }
-          }
+        case (id, WorkerState(ref, Idle)) => ref ! WorkIsReady
         case _                           => // busy
       }
     }
