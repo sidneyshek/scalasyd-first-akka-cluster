@@ -119,7 +119,7 @@ class DistributedWorkerSpec extends Specification with NoTimeConversions {
 
       val flakyWorker = system.actorOf(Worker.props(clusterClient, Props[FlakyWorkExecutor], 1.second), "flaky-worker")
 
-      val workProducer = system.actorOf(WorkProducer.props(frontend), "producer")
+      val workProducer = system.actorOf(WorkProducer.props(frontend, 0), "producer")
 
       // might take a while for things to get connected
       within(10.seconds) {

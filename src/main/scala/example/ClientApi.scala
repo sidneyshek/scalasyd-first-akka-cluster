@@ -22,7 +22,7 @@ class ClientApi extends Startup {
 
     val clusterClient = system.actorOf(ClusterClient.props(initialContacts), "clientApiClusterClient")
     val frontend = system.actorOf(Frontend.props(clusterClient), "frontend")
-    val workProducer = system.actorOf(WorkProducer.props(frontend), "producer")
+    val workProducer = system.actorOf(WorkProducer.props(frontend, 10), "producer")
     (system, workProducer, frontend)
   }
 
