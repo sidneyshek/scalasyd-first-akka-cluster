@@ -34,7 +34,7 @@ class Worker(clusterClient: ActorRef, workExecutorProps: Props, registerInterval
 
   import context.dispatcher
   val registerTask = context.system.scheduler.schedule(0.seconds, registerInterval, clusterClient,
-    SendToAll("/user/master/active", RegisterWorker(workerId)))
+    SendToAll("/user/broker/active", RegisterWorker(workerId)))
 
   val workExecutor = context.watch(context.actorOf(workExecutorProps, "exec"))
 
@@ -94,7 +94,7 @@ class Worker(clusterClient: ActorRef, workExecutorProps: Props, registerInterval
       context.become(waitForWorkIsDoneAck(result))
 
     case _: Work =>
-      log.info("Yikes. Master told me to do work, while I'm working.")
+      log.info("Yikes. Broker told me to do work, while I'm working.")
   }
 
   def waitForWorkIsDoneAck(result: Any): Receive = {
@@ -103,7 +103,7 @@ class Worker(clusterClient: ActorRef, workExecutorProps: Props, registerInterval
       context.setReceiveTimeout(Duration.Undefined)
       context.become(idle)
     case ReceiveTimeout =>
-      log.info("No ack from master, retrying")
+      log.info("No ack from broker, retrying")
       sendToMaster(WorkIsDone(workerId, workId, result))
   }
 
@@ -114,7 +114,7 @@ class Worker(clusterClient: ActorRef, workExecutorProps: Props, registerInterval
   }
 
   def sendToMaster(msg: Any): Unit = {
-    clusterClient ! SendToAll("/user/master/active", msg)
+    clusterClient ! SendToAll("/user/broker/active", msg)
   }
 
 }

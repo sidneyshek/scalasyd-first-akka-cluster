@@ -1,5 +1,7 @@
 package example
 
+import scalaz._
+
 object MyApp {
   def main(args: Array[String]): Unit = {
     var n = 0
@@ -9,7 +11,7 @@ object MyApp {
 
     while (true) {
       println(s"Generating notification for data ${n}")
-      client.sendNotifications(n)
+      client.sendNotifications(n).unsafePerformIO
       n += 1
       Thread.sleep(sleepInterval)
     }

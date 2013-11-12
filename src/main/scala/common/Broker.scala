@@ -69,6 +69,7 @@ class Broker(config: BrokerConfig) extends Actor with ActorLogging {
       if (workers.contains(workerId)) {
         workers += (workerId -> workers(workerId).copy(ref = sender))
       } else {
+        println(s"Worker registered ${workerId}")
         log.debug("Worker registered: {}", workerId)
         workers += (workerId -> WorkerState(sender, status = Idle))
         if (pendingWork.nonEmpty)
@@ -134,6 +135,7 @@ class Broker(config: BrokerConfig) extends Actor with ActorLogging {
       if (workIds.contains(work.workId)) {
         sender ! Broker.Ack(work.workId)
       } else {
+        println(s"Accepted work ${work.workId}")
         log.debug("Accepted work: {}", work)
         // TODO store in Eventsourced
         pendingWork = pendingWork enqueue work

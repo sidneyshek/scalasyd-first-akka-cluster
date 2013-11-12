@@ -23,7 +23,7 @@ class Frontend extends Actor {
   def receive = {
     case work =>
       implicit val timeout = Timeout(5.seconds)
-      (mediator ? Send("/user/master/active", work, localAffinity = false)) map {
+      (mediator ? Send("/user/broker/active", work, localAffinity = false)) map {
         case Broker.Ack(_) => Ok
       } recover { case _ => NotOk } pipeTo sender
 
