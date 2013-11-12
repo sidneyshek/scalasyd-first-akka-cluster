@@ -99,10 +99,8 @@ Actors are **objects** that do something in response to messages
    * Actor/FP boundary
 
 
-### Extension - Broker retries
+### Extension - Fix client overload
 
-
-### Extension - Removing dead workers
 
 
 ### What's next
