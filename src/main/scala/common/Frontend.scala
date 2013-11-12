@@ -6,7 +6,6 @@ import akka.contrib.pattern.DistributedPubSubExtension
 import akka.contrib.pattern.DistributedPubSubMediator.Send
 import akka.pattern._
 import akka.util.Timeout
-import common.Broker
 
 object Frontend {
   case object Ok

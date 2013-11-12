@@ -12,7 +12,9 @@ object BrokerMain extends Startup {
 
   def main(args: Array[String]): Unit = {
     // FIX - Add config file for broker
-    startBroker(BrokerConfig.default)
+    val config = if (args.length > 0) BrokerConfig.default.copy(port = args(0).toInt)
+                 else BrokerConfig.default
+    startBroker(config)
   }
 
   def startBroker(config: BrokerConfig): Address = {
@@ -20,6 +22,7 @@ object BrokerMain extends Startup {
     val port = config.port
     val hostname = config.hostname
     val seedNodesString = seedNodes.map("\"" + _ + "\"").mkString("[", ",", "]")
+    println("Seed nodes:" + seedNodesString)
     val conf = ConfigFactory.parseString(
       s"""akka.cluster.roles=[$role]
           akka.remote.netty.tcp.port=$port
@@ -33,7 +36,7 @@ object BrokerMain extends Startup {
      * in the cluster.
      */
     system.actorOf(ClusterSingletonManager.props(_ ⇒ Broker.props(config), "active",
-      PoisonPill, Some(role)), "master")
+      PoisonPill, Some(role)), "broker")
 
     println(s"Broker with role $role started at $hostname:$port")
     Cluster(system).selfAddress

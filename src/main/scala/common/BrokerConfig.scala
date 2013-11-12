@@ -1,6 +1,6 @@
 package common
 
-case class BrokerConfig(hostname: String, port: Int, role: String = "backend", workTimeoutSecs: Int = 10,
+case class BrokerConfig(hostname: String, port: Int, role: String = "broker", workTimeoutSecs: Int = 10,
                         retrySecs: Int = 10, maxRetries: Int = 10, resultTopic: String = "results")
 
 object BrokerConfig {
